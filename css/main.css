@@ -63,4 +63,6 @@ form > button {
     width: 0.1rem;
     background-color: #ccc;
 }
-
+.hidden {
+    display: none;
+}
