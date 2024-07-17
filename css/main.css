@@ -20,14 +20,15 @@ form {
     flex-direction: column;
     width: 100%;
 }
-form > input {
-    padding: 0.3em 0.5em;
-    font-size: 2rem;
-}
+form > input, 
 form > button {
-    padding: 0.3em 0.5em;
+    min-height: 3rem;
+    width: 100%;
+    padding: 0.3rem 0.5rem;
     font-size: 2rem;
+    line-height: 2rem;
 }
+
 .list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -47,6 +48,25 @@ form > button {
     gap: 1rem;
     padding: 1rem;
     border: 1px solid #ccc;
+    position: relative;
+    border-left: 0.5rem solid #000;
+}
+
+.list > .item[data-state='done'] {
+    background-color: #ccc;
+}
+
+.list .state{
+    display: none;
+    padding: 0.3em 0.5em;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: green;
+    color: #fff;
+}
+.list .item[data-state='done'] .state{
+    display: block;
 }
 .list .text {
     font-size: 1.5rem;
