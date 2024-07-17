@@ -27,11 +27,7 @@ submitButtonDOM.addEventListener('click', event => {
 
     const validationMsg = isValidText(textInputDOM.value);
     if (validationMsg !== true) {
-        toastDOM.classList.add('active');
-        toastDOM.dataset.state = 'error';
-        toastTitleDOM.textContent = 'Error';
-        toastMessageDOM.textContent = validationMsg;
-
+        showToastError(validationMsg);
         return;
     }
 
@@ -40,11 +36,7 @@ submitButtonDOM.addEventListener('click', event => {
         createdAt: Date.now(),
     });
     renderList();
-
-    toastDOM.classList.add('active');
-    toastDOM.dataset.state = 'success';
-    toastTitleDOM.textContent = 'Success';
-    toastMessageDOM.textContent = 'Įrašas sėkmingai sukurtas.';
+    showToastSuccess('Įrašas sėkmingai sukurtas.')
 });
 
 function renderList() {
@@ -98,32 +90,20 @@ function renderTaskList() {
 
             const validationMsg = isValidText(updateInputDOM.value);
             if (validationMsg !== true) {
-                toastDOM.classList.add('active');
-                toastDOM.dataset.state = 'error';
-                toastTitleDOM.textContent = 'Error';
-                toastMessageDOM.textContent = validationMsg;
-
+                showToastError(validationMsg);
                 return;
             }
 
             todoData[i].text = updateInputDOM.value.trim();
             renderTaskList();
-
-            toastDOM.classList.add('active');
-            toastDOM.dataset.state = 'success';
-            toastTitleDOM.textContent = 'Success';
-            toastMessageDOM.textContent = 'Įrašo informacija sėkmingai atnaujinta.';
+            showToastSuccess('Įrašo informacija sėkmingai atnaujinta.');
         });
 
         const cancelDOM = buttonsDOM[1];
         cancelDOM.addEventListener('click', () => {
             articleEditFormDOM.classList.add('hidden');
 
-
-            toastDOM.classList.add('active');
-            toastDOM.dataset.state = 'info';
-            toastTitleDOM.textContent = 'Info';
-            toastMessageDOM.textContent = 'Įrašo informacijos redagavimas baigtas be pakeitimų.';
+            showToastInfo('Įrašo informacijos redagavimas baigtas be pakeitimų.');
         });
 
         const editDOM = buttonsDOM[3];
@@ -137,10 +117,7 @@ function renderTaskList() {
             todoData.splice(i, 1);
             renderList();
 
-            toastDOM.classList.add('active');
-            toastDOM.dataset.state = 'success';
-            toastTitleDOM.textContent = 'Success';
-            toastMessageDOM.textContent = 'Įrašas sėkmingai ištrintas.';
+            showToastSuccess('Įrašas sėkmingai ištrintas.');
         });
     }
 }
@@ -191,6 +168,36 @@ function isValidText(text) {
     }
     return true;
 }
+
+
+function showToastSuccess(msg) {
+    toastDOM.classList.add('active');
+    toastDOM.dataset.state = 'success';
+    toastTitleDOM.textContent = 'Success';
+    toastMessageDOM.textContent = msg;
+}
+
+function showToastInfo(msg) {
+    toastDOM.classList.add('active');
+    toastDOM.dataset.state = 'info';
+    toastTitleDOM.textContent = 'Info';
+    toastMessageDOM.textContent = msg;
+}
+
+function showToastWarning(msg) {
+    toastDOM.classList.add('active');
+    toastDOM.dataset.state = 'warning';
+    toastTitleDOM.textContent = 'Warning';
+    toastMessageDOM.textContent = msg;
+}
+
+function showToastError(msg) {
+    toastDOM.classList.add('active');
+    toastDOM.dataset.state = 'error';
+    toastTitleDOM.textContent = 'Error';
+    toastMessageDOM.textContent = msg;
+}
+
 
 // CRUD operations:
 // -----------------------------------
