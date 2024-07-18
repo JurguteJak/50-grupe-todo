@@ -29,6 +29,28 @@ form > button {
     line-height: 2rem;
 }
 
+/* ------------------------ */
+
+.list-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+.list-actions .title {
+    font-weight: bold;
+}
+.list-actions button{
+    font-size: 1.1rem;
+    padding: 0.2rem 0.5rem;
+}
+.list-actions button.active {
+    background-color: #36f;
+    color: #fff;
+}
+
+/*-----------------------*/
+
 .list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
